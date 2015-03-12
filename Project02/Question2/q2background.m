@@ -23,10 +23,10 @@ for k = 1:num_images
     %output image path with the image name
     S = sprintf([output_folder_name,'/', sprintf('background%0.3d.tif',k)]);
     %noise variable
-    noise = [noise,normalizedImage(:)];
+    noise = [noise;normalizedImage(:)];
     %write the image to the output
     imwrite(normalizedImage,S);
 end
 figure
-hist(noise);
+hist(double(noise),256);
 end
