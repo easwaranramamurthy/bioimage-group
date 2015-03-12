@@ -1,4 +1,4 @@
-function [ ] = q3part1_plotAiryDisk( lambda, numAp )
+function [ ] = q3_plotAiryDisk( lambda, numAp )
 %function that plots an airy disk for the given numerical aperture and
 %wavelength
 %   Detailed explanation goes here
