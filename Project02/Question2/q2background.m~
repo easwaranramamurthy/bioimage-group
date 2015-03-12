@@ -1,0 +1,16 @@
+function [  ] = q2background( input_folder_name, output_folder )
+imagefiles = dir([input_folder_name,'/*.tif']);
+num_images = length(imagefiles);
+%read the series of images.
+for k = 1:num_images
+    %extract the file name
+    currentfilename = imagefiles(k).name;
+    %read the current file
+    A = imread([input_folder_name,'/',currentfilename]);
+    %crop the region
+    I = imcrop(A,[1.0e+03 * 0.0177    1.0e+03 * 0.0193    1.0e+03 * 1.3620    1.0e+03 * 0.0705]);
+    normalizedImage = uint8(255*mat2gray(I));
+    S = sprintf('background%0.3d.tif',k);
+    imwrite(normalizedImage,S);
+end
+end
