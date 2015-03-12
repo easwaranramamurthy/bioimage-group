@@ -17,8 +17,8 @@ I2 = conv2(I,h);
 
 % Displaying the original image, then after getting sigma input, displaying
 % filtered image.
-figure, imshow(I)
-figure, imshow(I2/256)
+figure, imshow(I, [])
+figure, imshow(I2, [])
 
 %Comments below
 % Gaussian filter is essentially a low-pass filter. Thus, it removes noise

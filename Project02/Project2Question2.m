@@ -23,6 +23,6 @@ I2 = conv2(I,hx);
 I3 = conv2(I,hy);
 
 %Displaying original image, followed by derivative images.
-figure, imshow(I)
-figure, imshow(I2)
-figure, imshow(I3);
+figure, imshow(I, [])
+figure, imshow(I2, [])
+figure, imshow(I3, []);
