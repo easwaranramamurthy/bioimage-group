@@ -27,9 +27,9 @@ if fitGaussian
     norm = @(xAxis, sigma) exp(-(xAxis/sigma).^2);
     bestFitSigma = lsqnonlin(@(sigma) norm(xAxis, sigma) - airyDisk, 10);
     bestFitNorm = exp(-(xAxis/bestFitSigma).^2);
-    plot(xAxis, airyDisk, xAxis, bestFitNorm );
-    title('Best Fit Gaussian with Airy Disk');
-    legend(sprintf('Airy Disk (lambda=%d,NA=%0.1f)',lambda, numAp), sprintf('Best Fit Gaussian (sigma = %0.2f)',bestFitSigma));
+    plot(xAxis, airyDisk, xAxis, bestFitNorm, 'r--' );
+    title(sprintf('Best Fit Gaussian with Airy Disk  (lambda=%d,NA=%0.1f)',lambda, numAp));
+    legend('Airy Disk', sprintf('Best Fit Gaussian (sigma = %0.2f)',bestFitSigma));
 else
     plot(xAxis, airyDisk);
     title('Airy Disk for Given lambda and NA');
@@ -37,6 +37,7 @@ else
     
 end
 
+set(findall(gca, 'Type', 'Line'),'LineWidth',3);
 xlabel('Radial Distance from optical axis (nm)');
 ylabel('Intensity');
 %setting y limit slightly higher than 1 so that peak is visible.

@@ -14,3 +14,4 @@ title('Point Spread Function (Airy Disk) for different lambda and NA');
 xlabel('Radial Distance from optical axis (nm)');
 ylabel('Intensity');
 legend('lambda = 480, NA = 0.5','lambda = 520, NA = 0.5', 'lambda = 680, NA = 0.5','lambda = 520, NA = 1.0','lambda = 520, NA = 1.4','lambda = 680, NA = 1.5');
+set(findall(gca, 'Type', 'Line'),'LineWidth',3);
