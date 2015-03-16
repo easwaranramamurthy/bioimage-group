@@ -13,16 +13,10 @@ hsize = [15 15];
 h = fspecial('gaussian', hsize , sigma);
 
 %Convolving the 2D image with the gaussian filter.
-I2 = conv2(I,h);
-
+I2 = conv2(double(I),double(h));
+I2 = double(I2);
 % Displaying the original image, then after getting sigma input, displaying
 % filtered image.
-figure, imshow(I, [])
-figure, imshow(I2, [])
+figure, imshow(I,[])
+figure, imshow(I2,[])
 
-%Comments below
-% Gaussian filter is essentially a low-pass filter. Thus, it removes noise
-% but also removes detail.
-% Large sigma means a wider Gaussain filter means greater smoothening
-% Thus as sigma goes from 1 to 7 , we see a greater blur of the image as
-% greater amount of detail is removed.
