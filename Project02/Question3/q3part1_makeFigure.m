@@ -1,6 +1,9 @@
+%setting x axis
 xAxis = linspace(-1000, 1000);
 airyDisks = [];
 
+
+%calculating airy disk for all 6 combinations of lambda and NA
 airyDisks = [airyDisks;q3part1_getAiryDiskFunction(480, 0.5, xAxis)];
 airyDisks = [airyDisks;q3part1_getAiryDiskFunction(520, 0.5, xAxis)];
 airyDisks = [airyDisks;q3part1_getAiryDiskFunction(680, 0.5, xAxis)];
@@ -8,6 +11,8 @@ airyDisks = [airyDisks;q3part1_getAiryDiskFunction(520, 1.0, xAxis)];
 airyDisks = [airyDisks;q3part1_getAiryDiskFunction(520, 1.4, xAxis)];
 airyDisks = [airyDisks;q3part1_getAiryDiskFunction(680, 1.5, xAxis)];
 
+
+%plotting all six on same graph with different colors and good formatting.
 plot(xAxis, airyDisks(1,:), xAxis, airyDisks(2,:), xAxis, airyDisks(3,:), xAxis, airyDisks(4,:), xAxis, airyDisks(5,:), xAxis, airyDisks(6,:));
 ylim([0 1.05]);
 title('Point Spread Function (Airy Disk) for different lambda and NA');
