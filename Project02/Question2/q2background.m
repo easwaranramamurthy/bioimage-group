@@ -45,6 +45,6 @@ xAxis= linspace(1,num_images,num_images);
 %plot the normplot of the noise
 %figure,normplot(noise);
 %plot the change over time for the mean and standard deviation
-figure,plot(xAxis,all_means), xlabel('Total Number of Images'), ylabel('means of noise of all images'), title('Mean vs. num of Images')
-figure,plot(xAxis,stddev), xlabel('Total Number of Images'), ylabel('std of noise of all images'), title('Standard Deviation vs. num of Images')
+figure,plot(xAxis,all_means), xlabel('Total Number of Images'), ylabel('means of noise of all images'), title('Mean vs. num of Images'), ylim([0 255])
+figure,plot(xAxis,stddev), xlabel('Total Number of Images'), ylabel('std of noise of all images'), title('Standard Deviation vs. num of Images'), ylim([0 255])
 end
