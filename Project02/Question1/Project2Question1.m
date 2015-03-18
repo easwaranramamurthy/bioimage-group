@@ -13,7 +13,7 @@ hsize = [15 15];
 h = fspecial('gaussian', hsize , sigma);
 
 %Convolving the 2D image with the gaussian filter.
-I2 = conv2(double(I),double(h));
+I2 = conv2(double(I),double(h), 'same');
 I2 = double(I2);
 % Displaying the original image, then after getting sigma input, displaying
 % filtered image.

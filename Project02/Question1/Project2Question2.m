@@ -17,11 +17,11 @@ h = fspecial('gaussian', hsize , sigma);
 [hx,hy] = gradient(h);
 
 %Convolving the 2D image with the gaussian filter in the x direction.
-I2 = conv2(double(I),double(hx));
+I2 = conv2(double(I),double(hx),'same');
 I2 = double(I2);
 
 %Convolving the 2D image with the gaussian filter in the y direction.
-I3 = conv2(double(I),double(hy));
+I3 = conv2(double(I),double(hy),'same');
 I3 = double(I3);
 
 %Displaying original image, followed by derivative images.
