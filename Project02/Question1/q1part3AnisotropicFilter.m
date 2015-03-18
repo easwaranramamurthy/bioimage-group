@@ -5,6 +5,7 @@ function [ gt ] = q1part3AnisotropicFilter( imageFile, sigmaU, sigmaV, theta )
 % imageFile - image file to be filtered
 % sigmaU - lateral direction sigma (horizontal)
 % sigmaV - longitudinal direction sigma (vertical)
+% theta - orientation angle in degrees
 
 % gt - image matrix that is filtered along the xt axis corresponding to
 % given theta
@@ -16,6 +17,8 @@ I = imread(imageFile);
 % Variables are named according to the paper Geusebroek et al., 2003, IEEE
 % Transactions on Image Processing
 
+% converting theta to radians
+theta = degtorad(theta);
 sigmaX = abs(sigmaU*sigmaV/sqrt(sigmaV^2*cos(theta)^2+sigmaU^2*sin(theta)^2));
 tanPsi = ((sigmaV^2)*(cos(theta)^2)+(sigmaU^2)*(sin(theta)^2))/((sigmaU^2-sigmaV^2)*cos(theta)*sin(theta));
 psi = atan(tanPsi);
