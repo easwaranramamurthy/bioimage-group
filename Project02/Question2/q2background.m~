@@ -38,7 +38,7 @@ end
 %figure, plot(w,10*log10(pxx))
 %fitting a line to the power spectrum and checking the slope (should be close to 0)
 coeffs = polyfit(w,10*log10(pxx),1);
-fprintf('slope of the power spectrum : %f\n',coeffs(1));
+fprintf('slope of the power spectrum : %f',coeffs(1);
 xAxis= linspace(1,num_images,num_images);
 %plot the histogram and fit it with a normal distibution
 %figure,histfit(noise,num_images,'normal');
