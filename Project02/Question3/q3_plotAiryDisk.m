@@ -25,7 +25,7 @@ airyDisk = (airyDisk-min(airyDisk))/(max(airyDisk)-min(airyDisk));
 %plotting
 if fitGaussian
     % fitting a gaussian kernel to the PSF
-    norm = @(xAxis, sigma) exp(-(xAxis/sigma).^2);
+    norm = @(xAxis, sigma) exp(-(0.5)*((xAxis/sigma).^2));
     
     %solving for sigma which minimizes least squares error
     bestFitSigma = lsqnonlin(@(sigma) norm(xAxis, sigma) - airyDisk, 10);
