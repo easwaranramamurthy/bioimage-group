@@ -69,7 +69,7 @@ gt = zeros(size(I));
 a=0.5;
 
 %mean
-mu = abs(tanPsi);
+mu = tanPsi;
 
 %individually applying the convolution to each pixel
 for y2=1:h,
@@ -82,16 +82,16 @@ for y2=1:h,
             innerSum = 0;
             %checking boundaries and adding accordingly (equivalent to zero
             %padding)
-            if and(floor(x2-j/mu)>0,y2-j>0)
+            if and(w>=floor(x2-j/mu)&&floor(x2-j/mu)>0,h>=(y2-j)&&(y2-j)>0)
                 innerSum = innerSum+a*gx(y2-j,floor(x2-j/mu));
             end
-            if and(floor(x2+j/mu)<=w,y2+j<=h)
+            if and(0<floor(x2+j/mu)&&floor(x2+j/mu)<=w,0<(y2+j)&&(y2+j)<=h)
                 innerSum = innerSum + a*gx(y2+j,floor(x2+j/mu));
             end
-            if and(floor(x2-j/mu)-1>0,y2-j>0)
+            if and(w>=(floor(x2-j/mu)-1)&&(floor(x2-j/mu)-1)>0,h>=(y2-j)&&(y2-j)>0)
                 innerSum = innerSum + (1-a)*gx(y2-j,floor(x2-j/mu)-1);
             end
-            if and(floor(x2+j/mu)+1<=w,y2+j<=h)
+            if and(0<(floor(x2+j/mu)+1)&&(floor(x2+j/mu)+1)<=w,0<(y2+j)&&(y2+j)<=h)
                 innerSum = innerSum + (1-a)*gx(y2+j,floor(x2+j/mu)+1);
             end
             
