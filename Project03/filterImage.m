@@ -1,6 +1,6 @@
-function [ filteredImage ] = filterImage( I, lambda, numAp )
+function [ filteredImage ] = filterImage( I, lambda, numAp, pixelSize )
 
-sigma = 0.61*lambda/(65*numAp);
+sigma = 0.61*lambda/(pixelSize*numAp);
 
 kernelSize = 6*round(sigma);
 
@@ -12,6 +12,6 @@ h = fspecial('gaussian', hsize , sigma);
 %Convolving the 2D image with the gaussian filter.
 filteredImage = conv2(double(I),double(h), 'same');
 filteredImage = double(filteredImage);
+filteredImage = 255*mat2gray(filteredImage);
 
 end
-
