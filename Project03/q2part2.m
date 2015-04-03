@@ -1,0 +1,11 @@
+I = imread('project3_images\images\001_a5_002_t001.tif');
+filtered = filterImage(I, 515, 1.4, 65);
+[maxes3,mins3] = findLocalMaximaAndMinima(filtered,3);
+[maxes5, mins5] = findLocalMaximaAndMinima(filtered, 5);
+figure, imshow(imcomplement((double(I).*maxes3)>0),[]), title('Maxes with 3x3 mask');
+figure, imshow(imcomplement((double(I).*mins3)>0),[]), title('Mins with 3x3 mask');
+figure, imshow(imcomplement((double(I).*maxes5)>0),[]), title('Maxes with 5x5 mask');
+figure, imshow(imcomplement((double(I).*mins5)>0),[]), title('Mins with 5x5 mask');
+[maxes7, mins7] = findLocalMaximaAndMinima(filtered, 7);
+figure, imshow(imcomplement((double(I).*maxes7)>0),[]), title('Maxes with 7x7 mask');
+figure, imshow(imcomplement((double(I).*mins7)>0),[]), title('Mins with 7x7 mask');
