@@ -1,6 +1,6 @@
 function [ outputImage ] = q3_1Synthetic( I, lambda, numAp, pixelSize, avgBG, stdBG )
 
-sigma = 0.61*lambda/(pixelSize*numAp);
+sigma = 0.61*lambda/(3*pixelSize*numAp);
 
 kernelSize = 6*round(sigma);
 

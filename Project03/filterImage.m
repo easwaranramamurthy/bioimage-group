@@ -1,7 +1,6 @@
 function [ filteredImage ] = filterImage( I, lambda, numAp, pixelSize )
 
-sigma = 0.61*lambda/(pixelSize*numAp);
-
+sigma = 0.61*lambda/(3*pixelSize*numAp);
 kernelSize = 6*round(sigma);
 
 hsize = [kernelSize kernelSize];
