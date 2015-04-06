@@ -1,4 +1,4 @@
-function [ outputImage ] = q3_1Synthetic( I, lambda, numAp, pixelSize, avgBG, stdBG )
+function [ outputImage ] = q3_1Synthetic( maxes, lambda, numAp, pixelSize, avgBG, stdBG )
 
 sigma = 0.61*lambda/(3*pixelSize*numAp);
 
@@ -10,10 +10,10 @@ hsize = [kernelSize kernelSize];
 h = fspecial('gaussian', hsize , sigma);
 
 %Convolving the 2D image with the gaussian filter.
-outputImage = conv2(double(I),double(h), 'same');
-maxVal = max(max(I)) / max(max(outputImage));
+outputImage = conv2(double(maxes),double(h), 'same');
+maxVal = 2535 / max(max(outputImage));
 outputImage = outputImage * maxVal;
-background = randn(size(I));
+background = randn(size(maxes));
 background = (background*stdBG)+avgBG;
 outputImage = outputImage + background;
 outputImage = uint16(outputImage);
