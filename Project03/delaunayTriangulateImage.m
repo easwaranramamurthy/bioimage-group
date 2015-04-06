@@ -1,4 +1,4 @@
-function [ DT,x,y ] = delaunayTriangulateImage( mins, maxes, I )
+function [ DT,x,y ] = delaunayTriangulateImage( mins )
 
 numRows = size(mins,1);
 numCols = size(mins,2);
@@ -15,7 +15,6 @@ for i=1:numRows,
 end
 
 DT = delaunayTriangulation(x,y);
-
 
 end
 
