@@ -11,8 +11,12 @@ h = fspecial('gaussian', hsize , sigma);
 
 %Convolving the 2D image with the gaussian filter.
 outputImage = conv2(double(maxes),double(h), 'same');
+
+%scaling intensities
 maxVal = 2535 / max(max(outputImage));
 outputImage = outputImage * maxVal;
+
+%adding white background noise
 background = randn(size(maxes));
 background = (background*stdBG)+avgBG;
 outputImage = outputImage + background;

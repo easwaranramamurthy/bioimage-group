@@ -1,6 +1,4 @@
-function [ avg, stddev ] = calcBackgroundMeanAndSD( input_folder_name )
-%exclude the last 5 images which are the calibration scale images at
-%different magnifications
+function [ avg, stddev ] = q2_1_calcBackgroundMeanAndSD( input_folder_name )
 num_images = 218;
 noise = [];
 
@@ -23,6 +21,7 @@ for k = 1:num_images
     noise = [noise;linearizedImage];
 end
 
+% calculate average and standard deviation of noise
 avg = mean(noise);
 stddev = std(noise);
 end
