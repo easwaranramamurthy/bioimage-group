@@ -10,8 +10,8 @@ if(max_histograms>255)
 end
 for num = 0:max_histograms,
     result = performSOT(I, num);
-    text = sprintf('num_histograms_%0.3d',num);
-    result = insertText(result, [0 0], text);
+    text = sprintf('no_hist_%0.3d',num);
+    result = insertText(result, [0 0], text, 'FontSize',18,'BoxColor','g', 'BoxOpacity', 1);
     imwrite(result, [out_dir,text,'.tif'], 'TIF', 'Compression', 'None');
 end
 end
