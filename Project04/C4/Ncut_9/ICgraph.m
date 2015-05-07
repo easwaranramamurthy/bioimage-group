@@ -23,7 +23,7 @@ function [W,imageEdges] = ICgraph(I,dataW,dataEdgemap);
 if (nargin< 2) | isempty(dataW),
     dataW.sampleRadius=10;
     dataW.sample_rate=0.3;
-    dataW.edgeVariance = 0.2;
+    dataW.edgeVariance = 0.1;
 end
 
 if (nargin<3) | isempty(dataEdgemap),

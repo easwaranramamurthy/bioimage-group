@@ -23,9 +23,9 @@ if nargin < 2
     nbEigenValues = 8;
 end
 if nargin < 3
-    dataNcut.offset = 6e-1;
+    dataNcut.offset = 5e-1;
     dataNcut.verbose = 0;
-    dataNcut.maxiterations = 300;
+    dataNcut.maxiterations = 500;
     dataNcut.eigsErrorTolerance = 1e-8;
     dataNcut.valeurMin=1e-6;
 end

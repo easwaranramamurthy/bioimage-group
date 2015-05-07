@@ -1,4 +1,4 @@
-function [SegLabel,NcutDiscrete,NcutEigenvectors,NcutEigenvalues,W,imageEdges]= NcutImage(I,nbSegments);
+function [SegLabel,NcutDiscrete,NcutEigenvectors,NcutEigenvalues,W,imageEdges]= NcutImage(I,nbSegments,dataW);
 %  [SegLabel,NcutDiscrete,NcutEigenvectors,NcutEigenvalues,W,imageEdges]= NcutImage(I);
 %  Input: I = brightness image
 %         nbSegments = number of segmentation desired
@@ -13,7 +13,7 @@ if nargin <2,
    nbSegments = 10;
 end
 
-[W,imageEdges] = ICgraph(I);
+[W,imageEdges] = ICgraph(I,dataW);
 
 [NcutDiscrete,NcutEigenvectors,NcutEigenvalues] = ncutW(W,nbSegments);
 
