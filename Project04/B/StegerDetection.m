@@ -1,52 +1,31 @@
 function [ detectedLines ] = StegerDetection( imageFile )
+width = 5;
+thresh = 0.15;
+sigma = floor(width/sqrt(3));
+hsize = [6*sigma+1 6*sigma+1];
+
+gauss = fspecial('gaussian', hsize, sigma);
+
+[gaussDerivX, gaussDerivY] = gradient(gauss);
+
+[gaussDerivXX, gaussDerivXY] = gradient(gaussDerivX);
+
+[~, gaussDerivYY] = gradient(gaussDerivX);
 
 I = double(imread(imageFile));
 
-gaussX = zeros(size(I));
-gaussY = zeros(size(I));
-gaussDerivX = zeros(size(I));
-gaussDerivY = zeros(size(I));
-gaussDerivXX = zeros(size(I));
-gaussDerivYY = zeros(size(I));
-gaussDerivXY = zeros(size(I));
-
-sprintf('Starting first for loop')
-for i=1:size(I,1),
-    for j=1:size(I,2),
-        sprintf('Currently working on i:%d, j:%d',i,j)    
-        gaussX(i,j) = getPhiSigma(i+0.5,j)-getPhiSigma(i-0.5,j);
-        gaussY(i,j) = getPhiSigma(i,j+0.5)-getPhiSigma(i,j-0.5);
-    end
-end
-
-
-
-sprintf('Starting second for loop')
-for i=1:size(I,1),
-    for j=1:size(I,2),
-        sprintf('Currently working on i:%d, j:%d',i,j)    
-        gaussDerivX(i,j) = getGauss(i+0.5,j, gaussX)-getGauss(i-0.5,j,gaussX);
-        gaussDerivY(i,j) = getGauss(i,j+0.5, gaussY)-getGauss(i,j-0.5,gaussY);
-        gaussDerivXX(i,j) = getGauss(i+1,j,gaussX)-2*getGauss(i,j,gaussX)+getGauss(i-1,j,gaussX);
-        gaussDerivYY(i,j) = getGauss(i,j+1,gaussY)-2*getGauss(i,j,gaussY)+getGauss(i,j-1,gaussY);
-        gaussDerivXY(i,j) = getGauss(i+0.5,j+0.5,gaussX)-getGauss(i-0.5,j+0.5, gaussX)-getGauss(i+0.5,j-0.5,gaussX)+getGauss(i-0.5,j-0.5,gaussX);
-    end
-end
-
-
+I = conv2(I,gauss,'same');
 rX = conv2(I, gaussDerivX, 'same');
 rY = conv2(I, gaussDerivY, 'same');
 rXX = conv2(I, gaussDerivXX, 'same');
-rYY = conv2(I, gaussDerivYY, 'same');
 rXY = conv2(I, gaussDerivXY, 'same');
+rYY = conv2(I, gaussDerivYY, 'same');
 
 detectedLines = zeros(size(I));
 
-sprintf('Starting third for loop')
 
 for i=1:size(I,1),
     for j=1:size(I,2),
-        sprintf('Currently working on i:%d, j:%d',i,j)
         hessian = [rXX(i,j), rXY(i,j);rXY(i,j), rYY(i,j)];
         [V, D] = eig(hessian);
         D = abs(diag(D)');
@@ -59,7 +38,9 @@ for i=1:size(I,1),
         pX = t*nX;
         pY = t*nY;
         if(pX>=-0.5&&pX<=0.5&&pY>=-0.5&&pY<=0.5)
-            detectedLines(i,j) = 1;
+            if(abs(rXX(i,j))>thresh && abs(rXY(i,j))>thresh && abs(rYY(i,j))>thresh)
+                detectedLines(i,j) = 1;
+            end
         end
     end
 end

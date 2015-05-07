@@ -1,4 +1,6 @@
 function [vol_error, fpr, fnr] = evaluateSOT()
+%function to evaluate errors and fpr and fnr for SOT for the first three
+%MITOGFP frames
 I1 = double(imread('../selected_images/MitoGFP_LgtGal4_a01r01s02001.tif'));
 gt1 = imread('../selected_images/frame1.tif');
 I2 = double(imread('../selected_images/MitoGFP_LgtGal4_a01r01s02002.tif'));
