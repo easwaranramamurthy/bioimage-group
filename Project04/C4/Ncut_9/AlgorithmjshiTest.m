@@ -17,24 +17,19 @@ x = linspace(0,0.1,21);
 
 dataW.sampleRadius=10;
 dataW.sample_rate=6;
-dataW.edgeVariance = 0.1;
+dataW.edgeVariance = 0.045;
 
-for i = 1:numel(x)
     %disp('computing Ncut eigenvectors ...');
-    if x(i) == 0
-        continue
-    end
-    tic;
-    dataW.edgeVariance = x(i);
-    [SegLabel,NcutDiscrete,NcutEigenvectors,NcutEigenvalues,W,imageEdges]= NcutImage(I,nbSegments,dataW);
-    disp(['The computation took ' num2str(toc) ' seconds on the ' num2str(size(I,1)) 'x' num2str(size(I,2)) ' image']);
+
+ tic;
+ [SegLabel,NcutDiscrete,NcutEigenvectors,NcutEigenvalues,W,imageEdges]= NcutImage(I,nbSegments,dataW);
+ disp(['The computation took ' num2str(toc) ' seconds on the ' num2str(size(I,1)) 'x' num2str(size(I,2)) ' image']);
     %figure(3);clf
-    bw = edge(SegLabel,0.01);
-    J1=showmask(I,imdilate(bw,ones(2,2))); 
+ bw = edge(SegLabel,0.01);
+ J1=showmask(I,imdilate(bw,ones(2,2)));
     %imagesc(J1);axis off
-    output = sprintf('output_NCUTedgevariance%f.tif',x(i));
-    imwrite(J1,output);
-end
+ imwrite(J1,'Blue0001_output.tif');
+
 % %% display the edges
 % figure(2);clf; imagesc(imageEdges); axis off
 % disp('This is the edges computed, press Enter to continue...');
