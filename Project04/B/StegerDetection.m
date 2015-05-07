@@ -1,6 +1,5 @@
-function [ detectedLines ] = StegerDetection( imageFile )
-width = 5;
-thresh = 0.15;
+function [ detectedLines ] = StegerDetection( imageFile, width, thresh )
+
 sigma = floor(width/sqrt(3));
 hsize = [6*sigma+1 6*sigma+1];
 
@@ -44,5 +43,6 @@ for i=1:size(I,1),
         end
     end
 end
+imshow(detectedLines,[])
 end
 
