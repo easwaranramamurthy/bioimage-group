@@ -13,7 +13,6 @@ figure(1);clf; imagesc(I);colormap(gray);axis off;
 
 %% compute the edges imageEdges, the similarity matrix W based on
 %% Intervening Contours, the Ncut eigenvectors and discrete segmentation
-x = linspace(0,0.1,21);
 
 dataW.sampleRadius=10;
 dataW.sample_rate=6;
